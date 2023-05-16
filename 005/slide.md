@@ -26,7 +26,7 @@
 
 ## Gradleタスクについて
 
-- Gradleにおいて、複数の処理鵜をひとまとめにしたもの
+- Gradleにおいて、複数の処理をひとまとめにしたもの
 - `build-gradle`にpluginを足すことでタスクを使えるようにしたり、自前で定義する事も可能
 - タスク間の依存関係を定義したり、順序付けをする事も可能
 
@@ -53,7 +53,7 @@ choco install gradle
   - Eclipseの場合、Gradleプロジェクトをインポートすると「Gradleタスク」ビューが利用可能となります。
   - VSCodeの場合はGradle for Javaという拡張機能を利用する事で、GUIによる操作が可能です。
     - 以下はVSCodeの拡張機能を利用した場合のビューです。
-     ![vscode-gradle](imgs/2023-05-16-21-22-58.png)
+     ![vscode-gradle](imgs/vscode-gradle.png)
 
 ## 参考文献
 
