@@ -53,7 +53,7 @@ choco install gradle
   - Eclipseの場合、Gradleプロジェクトをインポートすると「Gradleタスク」ビューが利用可能となります。
   - VSCodeの場合はGradle for Javaという拡張機能を利用する事で、GUIによる操作が可能です。
     - 以下はVSCodeの拡張機能を利用した場合のビューです。
-     ![vscode-gradle](imgs/vscode-gradle.png)
+    - ![vscode-gradle](imgs/vscode-gradle.png)
 
 ## 参考文献
 
