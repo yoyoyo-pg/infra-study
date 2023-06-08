@@ -42,7 +42,8 @@
 ## Gradleタスクについて
 
 - Gradleにおいて、複数の処理をひとまとめにしたもの
-- `build-gradle`にpluginを足すことでタスクを使えるようにしたり、自前で定義する事も可能
+- `build.gradle`にpluginを足すことでタスクを使えるようにしたり、自前で定義する事も可能
+  - 今回のハンズオンの場合は、pluginである`maven-publish`を追加する事で、`publish`系のタスクを使えるように
 - タスク間の依存関係を定義したり、順序付けをする事も可能
 
 ---
@@ -51,7 +52,7 @@
 
 ### Gradleのインストール
 
-手元にGradleをchocolateyでインストールします。
+今回はWindowsが実行環境なので、`chocolatey`でgradleをインストールします。
 
 ```powershell
 choco install gradle
