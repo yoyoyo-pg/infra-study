@@ -11,15 +11,6 @@
 
 ---
 
-## ハンズオンの内容
-
-今回は以下を実施します。
-
-- GradleでJavaのプロジェクトをビルドし、Mavenローカルリポジトリ上に公開
-- 既存Mavenプロジェクトから自作ライブラリを利用
-
----
-
 ## Gradleとは
 
 - 2007年に誕生したビルドツール
@@ -43,8 +34,34 @@
 
 - Gradleにおいて、複数の処理をひとまとめにしたもの
 - `build.gradle`にpluginを足すことでタスクを使えるようにしたり、自前で定義する事も可能
-  - 今回のハンズオンの場合は、pluginである`maven-publish`を追加する事で、`publish`系のタスクを使えるように
+  - 今回は、pluginである`maven-publish`を追加する事で、`publish`や`build`系のタスクを使えるように
 - タスク間の依存関係を定義したり、順序付けをする事も可能
+
+---
+
+## タスクの生成物
+
+- 基本的に`build`ディレクトリ配下に生成物が配置される
+  - `jar`タスク（`gradle jar`）や`war`タスク（`gradle war`）の実行時
+    - `war`タスクは例えば`war`pluginを追加する事で使えるように
+  - `javadoc`タスク（`gradle javadoc`）の実行時
+
+---
+
+## javadoc生成の例
+
+`gradle javadoc`実行後に、`lib/build/docs/javadoc/index.html`を確認
+
+![javadoc](imgs/javadoc.png)
+
+---
+
+## ハンズオンの内容
+
+今回は以下を実施します。
+
+- GradleでJavaのプロジェクトをビルドし、Mavenローカルリポジトリ上に公開
+- 既存Mavenプロジェクトから自作ライブラリを利用
 
 ---
 
@@ -57,6 +74,8 @@
 ```powershell
 choco install gradle
 ```
+
+`gradle -v`で正しくインストールされていることをチェックします。
 
 ---
 
@@ -89,3 +108,4 @@ choco install gradle
 - [Gradleとは何者？インストール方法〜使い方までわかりやすく解説](https://camp.trainocate.co.jp/magazine/about-gradle/)
 - [Maven3のはじめかた - Mavenリポジトリ](https://maven3.kengo-toda.jp/primer/maven-repository)
 - [Qiita - GradleでMavenローカルリポジトリにpublishをする](https://qiita.com/yoyoyo_pg/items/61ea8dc2e4e434f53f99)
+- [Gradle User Guide](http://gradle.monochromeroad.com/docs/userguide/userguide.html)
