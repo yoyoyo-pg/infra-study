@@ -1,0 +1,15 @@
+POST https://app.engn.jp/api/v1/deliveries/transaction
+Authorization: Bearer 認証トークンを記載
+content-type: application/json
+
+{
+  "from": {
+    "email": "aaa@example.com",
+    "name": "送信者サンプル"
+  },
+  "to": "aaa@example.com",
+  "subject": "テスト件名",
+  "encode": "UTF-8",
+  "text_part": "テスト配信",
+  "html_part": "<!DOCTYPE html><html><header></header><body>sample html</body></html>"
+}
