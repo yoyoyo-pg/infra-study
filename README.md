@@ -8,7 +8,7 @@
 - [第四回：マイクロサービスについて](/004/slide.md)
 - [第五回：Gradleについて（ハンズオン）](/005/slide.md)
 - [第六回：IaCについて](/006/slide.md)
-- [第七回:送信ドメイン認証について](/007/slide.md)
+- [第七回：メールの送信ドメイン認証について](/007/slide.md)
 - [第XXX回：AWSのIAM（権限回りの仕組み）について](/XXX/slide.md) ※予定
 - [第XXX回：AWSのLambdaハンズオン](/XXX/slide.md) ※予定
 
