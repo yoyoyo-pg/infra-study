@@ -75,7 +75,7 @@ DKIMでは、電子署名を利用して改ざんの検証をしています。
 
 ![dkim2](imgs/dkim2.png)
 
-まずはパスワード生成ツール等で適当な文字列を生成します。  
+まずは[パスワード生成ツール](https://www.luft.co.jp/cgi/randam.php)等で適当な文字列を生成します。  
 その後、[DKIMコードジェネレーター](https://powerdmarc.com/ja/power-dmarc-toolbox/)を利用して生成した秘密鍵を、blastengineのコンソールに入力します。
 
 ![dkim4](imgs/dkim4.png)
