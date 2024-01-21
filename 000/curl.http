@@ -1,0 +1,33 @@
+# dictionaryデバッグ用
+
+###
+# GET dictionaryからword一覧を取得
+GET https://XXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/items
+
+###
+# GET dictionaryから1件のwordを取得
+GET https://XXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/items/1
+
+###
+# DELETE dictionaryから1件のwordを削除
+DELETE https://XXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/items/3
+
+###
+# PUT dictionaryに1件のwordを登録、更新
+PUT https://XXXXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/items
+content-type: application/json
+
+{
+    "id": 3,
+    "word": "コンテナ",
+    "explanation": "ホストOSの一部を分離して他と隔離された専用のエリアを用意し、その上でソフトウェアを動作させる方式のこと"
+}
+
+### 感情分析API
+
+POST https://XXXXXXXXXXXXXXXXXXXX.lambda-url.ap-northeast-1.on.aws/
+content-type: application/json
+
+{
+    "Text": "ラーメン二郎はよくアトラクションに例えられる事があります。食べる前にワクワクしながら行列に並ぶ感覚はテーマパークのアトラクションに通ずるものがあります。"
+}
