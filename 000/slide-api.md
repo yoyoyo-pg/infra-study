@@ -157,3 +157,77 @@ Representational State Transfer (REST)](https://www.ics.uci.edu/~fielding/pubs/d
 - [gRPCと従来のREST APIの比較](https://www.integrate.io/jp/blog/grpc-vs-rest-how-does-grpc-compare-with-traditional-rest-apis-ja/)
 - [マイクロサービスバックエンドAPIのためのRESTとgRPC](https://www.slideshare.net/disc99_/apirestgrpc)
 - [マイクロサービスが開発・運用コストの削減にどう貢献するか考えてみた件](https://qiita.com/takahashisansan/items/7470a14e45aee2b6739f)
+
+---
+
+## 認証回り
+
+### 認証を行う場合と行わない場合
+
+- 認証を行わない場合
+  - 外部向けAPIなど
+  - 不特定多数からのアクセスが来る
+  - 負荷分散のためにCDNによるキャッシュを検討
+- 認証を行う場合
+  - 内部向けAPIなど
+  - Coockeによる認証
+  - OAuth認証、トークン発行による認証
+
+---
+
+### JWT
+
+- xxxxx.yyyyy.zzzzzの形で、Header、Payload、Signatureとなっている
+- Base64Urlでエンコードされ、URLに利用可能な文字列
+- ステートレスを実現できる
+- 必要以上に長くトークンを保持しない&ブラウザのストレージに保持しないように
+
+---
+
+### OAuth
+
+- 従来のID、パスワードベースとは異なるトークンベースの認証
+- 第3のWebサービスにユーザーが持つデータにアクセスする許可を与える仕組み
+- 認証を与えたサービスの保有しているユーザーリソースを、認証を与えられたサービスが利用できる
+- [参考資料](https://tech-lab.sios.jp/archives/25470)
+
+---
+
+#### 理解するうえでの予備知識
+
+- 従来の認証だとサービスAがサービスBのパスワードを保持しておく必要があった
+- AさんのTwitterの投稿をFacebookにそのままする例を考えてみる
+
+---
+
+1.FacebookがtwitterにOAuth利用許可を与える（初回利用時のみ）
+
+- 具体的には、twitterがfacebookに申請を出し、クライアントID、クライアントシークレットを発行
+- 各自クライアントID、シークレット、利用サービスをDBに保存
+- これはあくまでadmin側。ユーザー側がやる操作ではない
+
+2.AさんがTwitter→Facebook連携
+
+- twitter画面で、連携の設定画面にアクセスする
+- twitterに保存されたクライアントIDを付与してURLをパラメータに乗せ、facebookのログイン画面にリダイレクトする
+
+3.facebookログイン後
+
+- ログインすると、facebookは連携の許可を出す確認画面を表示
+- リダイレクトの際のパラメータを見て正しい連携のリクエストかを判断
+
+4.連携リクエスト後
+
+- AさんがOKを選択すると、twitterにリダイレクト
+- この際、認可コードがパラメータとしてtwitterに渡り、facebook自体がこれを保存
+
+5.twitterリダイレクト
+
+- twitterは先ほどの認可コードを利用し、facebookにアクセストークンを取得しに行く
+- facebook側は問題なければtwitterにアクセストークンを返す
+- ここでfacebook、twitter両方ともアクセストークンとIDをセットで保存する
+
+6.実際に呟く際の流れ
+
+- twitterでAさんが呟くと、facebook側にもアクセストークンを渡す
+- facebookの該当するアクセストークンを検索し、それに紐づくユーザーで投稿がされる
