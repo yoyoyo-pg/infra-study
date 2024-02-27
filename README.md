@@ -16,3 +16,7 @@
 
 - [コンテナ勉強会](/000/slide-container.md)
 - [API勉強会](/000/slide-api.md)
+
+その他
+
+- [AWSサービス外観](/AWS-Service/slide.md)
