@@ -10,6 +10,7 @@
 - [第六回：IaCについて](/006/slide.md)
 - [第七回：メールの送信ドメイン認証について](/007/slide.md)
 - [第八回：AWSのIAM（権限回りの仕組み）について](/008/slide.md)
+- [第九回：Node.jsを使って簡単なWebサーバを立ててみよう](/009/slide.md)
 - [第XXX回：AWSのLambdaハンズオン](/XXX/slide.md) ※予定
 
 過去資料
