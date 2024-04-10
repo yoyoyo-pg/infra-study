@@ -102,7 +102,7 @@ npm run dev # Next.js
 - Node.jsプロジェクトをGitHub等からpullしてきたとき、最初に`npm init`や`npm ci`といったコマンドを叩きますが、これにより`package.json`の情報を基に依存パッケージがプロジェクト内にインストールされます。
 
 > [!NOTE]
-> `package.json`をJava用語で例えるなら、依存関係を定義しておく`pom.xml`のようなものです。
+> `package.json`をJava用語で例えるなら、依存関係を定義しておく`pom.xml`や`build.gradle`のようなものです。
 
 ## `package.json`によってどこに依存パッケージがインストールされる？
 
