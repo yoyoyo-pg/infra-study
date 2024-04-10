@@ -15,8 +15,8 @@
 - React等を用いて大規模なアプリケーションを開発するとなると、様々なパッケージが必要で、各パッケージには依存関係があります。
 - Node.jsはパッケージのインストールと整合性を管理する為に必要で、`npm`（Node Package Manager）がその解決を担っています。
 
-[!NOTE]
-`npm`をJavaで例えるなら、MavenやGradleといったビルドツールによるパッケージ管理をするので、それのJavaScript版だと理解して頂くと分かりやすいと思います。
+> [!NOTE]
+> `npm`をJavaで例えるなら、MavenやGradleといったビルドツールによるパッケージ管理をするので、それのJavaScript版だと理解して頂くと分かりやすいと思います。
 
 参考：[React入門！！の前に知っておきたいNode.jsとJavaScriptの知識](https://qiita.com/rpf_nob/items/6823fb8728754386ef30)
 
@@ -92,8 +92,8 @@ npm run dev # Next.js
 - `npx`を使う事で、プロジェクト内にインストールされていない機能を一時的にインストールして実行可能です。
   - 例えば今回だと、[create-next-app](https://www.npmjs.com/package/create-next-app)パッケージが一時的にインストールされ、実行されることでNext.jsのプロジェクトを構築するという形となっています。
 
-[!NOTE]
-`npx`をJavaで例えるなら、MavenやGradleをインストールしていなくとも、Maven WrapperやGradle Wrapperを用いる事で、いつでもコマンドとして使えるようにしている物だと理解して頂くと分かりやすいと思います。
+> [!NOTE]
+> `npx`をJavaで例えるなら、MavenやGradleをインストールしていなくとも、Maven WrapperやGradle Wrapperを用いる事で、いつでもコマンドとして使えるようにしている物だと理解して頂くと分かりやすいと思います。
 
 ## Next.jsのプロジェクトにある`package.json`って何？
 
@@ -101,16 +101,16 @@ npm run dev # Next.js
 - プロジェクトの情報や、依存するパッケージの情報が記載されています。
 - Node.jsプロジェクトをGitHub等からpullしてきたとき、最初に`npm init`や`npm ci`といったコマンドを叩きますが、これにより`package.json`の情報を基に依存パッケージがプロジェクト内にインストールされます。
 
-[!NOTE]
-`package.json`をJavaで例えるなら、`pom.xml`と理解して頂くと分かりやすいと思います。
+> [!NOTE]
+> `package.json`をJavaで例えるなら、`pom.xml`と理解して頂くと分かりやすいと思います。
 
 ## `package.json`によってどこに依存パッケージがインストールされる？
 
 - プロジェクト内の`node_modules`ディレクトリに依存パッケージがインストールされます。
 - `node_modules`ディレクトリは肥大化しがちなので、Gitリポジトリにはコミットしない（`.gitignore`に指定する）のが一般的です。
 
-[!NOTE]
-`node_modules`をJavaで例えるなら、ローカルの`.m2`リポジトリのような物だと理解して頂くと分かりやすいと思います。
+> [!NOTE]
+> `node_modules`をJavaで例えるなら、ローカルの`.m2`リポジトリのような物だと理解して頂くと分かりやすいと思います。
 
 ## ローカルインストールとグローバルインストールについて
 
