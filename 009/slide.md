@@ -37,6 +37,10 @@ node -v # Node.jsのバージョン確認
 npm -v # npmのバージョン確認
 ```
 
+> [!NOTE]
+> 後に実行する`npx create-next-app`にはNode.jsの18以上のバージョンが必要です。
+> [Create a Next.js App](https://nextjs.org/learn-pages-router/basics/create-nextjs-app/setup)
+
 - `server.js`の作成
 
 ```js:server.js
