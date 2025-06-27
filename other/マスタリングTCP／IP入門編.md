@@ -142,6 +142,21 @@
       - [7.6.1 BGP と AS 番号](#761-bgp-と-as-番号)
       - [7.6.2 BGP は経路ベクトル](#762-bgp-は経路ベクトル)
       - [個人的補足（Internet Week 2024 資料などより）](#個人的補足internet-week-2024-資料などより)
+  - [第 8 章 アプリケーションプロトコル](#第-8-章-アプリケーションプロトコル)
+    - [8.1 アプリケーションプロトコルの概要](#81-アプリケーションプロトコルの概要)
+    - [8.2 遠隔ログイン（TELNET と SSH）](#82-遠隔ログインtelnet-と-ssh)
+    - [8.3 ファイル転送（FTP）](#83-ファイル転送ftp)
+      - [FTP について余談](#ftp-について余談)
+    - [8.4 電子メール（E-Mail）](#84-電子メールe-mail)
+      - [8.4.3 MIME（Multipurpose Internet MailExtensions）](#843-mimemultipurpose-internet-mailextensions)
+      - [8.4.4 SMTP（Simple Mail Transfer Protocol）](#844-smtpsimple-mail-transfer-protocol)
+      - [8.4.5 POP（Post Office Protocol）](#845-poppost-office-protocol)
+      - [8.4.6 IMAP（Internet Message Access Protocol）](#846-imapinternet-message-access-protocol)
+    - [8.5 WWW（World Wide Web）](#85-wwwworld-wide-web)
+    - [8.5.3 URI（Uniform Resource Identifier）](#853-uriuniform-resource-identifier)
+      - [スキーム](#スキーム)
+    - [8.5.4 HTML（HyperText Markup Language）](#854-htmlhypertext-markup-language)
+    - [8.5.5 HTTP（HyperText Transfer Protocol）](#855-httphypertext-transfer-protocol)
 
 ## 第 1 章 ネットワーク基礎知識
 
@@ -976,3 +991,93 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
   - 経路ハイジャック：パキスタンテレコムの例（<https://www.ripe.net/about-us/news/youtube-hijacking-a-ripe-ncc-ris-case-study/）>
 - RPKI（Resource Public Key Infrastructure）の普及が進んでいる
   - BGP には「誰が広告しているか」の本人確認の仕組みがないので、その証明をするための公開鍵基盤です。（この IP/AS はこの組織のもの、という事を証明）
+
+## 第 8 章 アプリケーションプロトコル
+
+### 8.1 アプリケーションプロトコルの概要
+
+- TCP や IP などの下位層のプロトコルはアプリケーションの種類によらず使えるように設計された汎用性の高いプロトコル
+- アプリケーションプロトコルは実用的なアプリケーションを実現する為に作られたプロトコル
+- 実現しなければならない機能や利用目的によって、一般的もしくは独自のアプリケーションプロトコルを利用することになる
+
+### 8.2 遠隔ログイン（TELNET と SSH）
+
+- Telnet（テルネット） は暗号化されておらず、SSH は通信内容を暗号化する
+- Telnet は TCP の 23 番ポートを使用する
+- SSH はファイルの転送（scp,sftp）や、ポートフォワード機能が利用できる
+  - ポートフォワードとは、特定のポート番号に届けられたメッセージを特定の IP アドレス、ポート番号に転送する仕組み
+
+### 8.3 ファイル転送（FTP）
+
+- インターネット上にはだれでもログインできる FTP サーバが用意されている
+  - anonymous（匿名） ftp サーバーと呼ばれる
+
+#### FTP について余談
+
+- 全然関係ないですが興味深いサービスを見つけました（IoT 検索エンジン）
+  - [Karma（カルマ）](https://www.00one.jp/karma/)というサービスで、例えば「グローバル IP アドレス × ポート番号」で空いているポートを検索できるようです。
+  - [参考記事](https://www.00one.jp/blog/karma/the-anonymous-ftp-server/)
+
+### 8.4 電子メール（E-Mail）
+
+- 初期の電子メールでは、電子メールを送信するホストから受信ホストに直接 TCP のコネクションを確立しメールを配送していた
+  - 片方の電源が落ちていると送受信ができなかった
+- 電源を切らないメールサーバ―を経由するようになった
+  - そして受信者がメールサーバーから電子メールを受け取る POP(Post Office Protocol)というプロトコルが標準化された
+
+#### 8.4.3 MIME（Multipurpose Internet MailExtensions）
+
+- 長い間、インターネットの電子メールはテキスト形式しか扱えなかった
+  - しかし現在は電子メールで転送できるデータ形式を拡張する MIME が一般的となった
+    - 静止画や動画、音声、プログラムファイルなどさまざまな情報を送ることができる
+- MIME は基本的にヘッダと本文（データ）で構成される
+
+#### 8.4.4 SMTP（Simple Mail Transfer Protocol）
+
+- TCP のポート番号は 25 番が利用される
+- SMTP は 1 つの TCP コネクションを確立して、そのコネクション上で制御や応答、データからなるメッセージの転送を行う
+- クライアントはテキストコマンドで要求を出し、サーバーは 3 桁の数字で表される文字列で応答を返す
+- もともとの SMTP には送信者を認証する機能が無い
+
+#### 8.4.5 POP（Post Office Protocol）
+
+- メールは送信者から SMTP によって常時電源が入っている POP サーバーまで到着する
+- クライアントは POP によって POP サーバーに保存された相手からのメールを取り出す
+  - また、他人にメールを盗み取られる事を防ぐために、ユーザーの認証も行う
+- POP でも SMTP と同様に、サーバーとクライアントの間で 1 つの TCP コネクションを利用する
+- ローカル PC にメールが保存され、サーバーから削除される
+
+#### 8.4.6 IMAP（Internet Message Access Protocol）
+
+- IMAP は POP と同様に電子メールなどのメッセージを受信するプロトコル
+- POP の場合は電子メールの管理をクライアント側で行うが、IMAP の場合はサーバー側で行う
+- IMAP を利用することにより、複数の端末から IMAP サーバー上にあるメッセージを読み書きすることができる
+
+### 8.5 WWW（World Wide Web）
+
+- WWW はインターネット上の情報をハイパーテキスト形式で参照できる情報システム
+- 文書間のつながりを世界中に蜘蛛の巣のように張り巡らすイメージから、World Wide Web と名付けられた
+- WWW では大きく「情報へのアクセス手段と位置の定義、情報の表現フォーマットの定義、情報の転送などの操作の定義」という 3 つの定義が行われている
+  - それぞれ URI（Uniform Resource Identifier）、HTML（HyperText Markup Language）、HTTP（HyperText Transfer Protocol）と呼ばれる
+
+### 8.5.3 URI（Uniform Resource Identifier）
+
+- URI 自体は WWW 以外にも利用できる汎用性の高い識別子
+  - ホームページのアドレスや電子メールのアドレス、電話番号など
+- URL（Uniform Resource Locator）はインターネットの資源を表す俗称として使われる
+  - 現在有効な RFC 文書などでは URL という名称は使われず URI が使われる
+
+#### スキーム
+
+- URI があらわす枠組みをスキーム（scheme）という
+- WWW では主に URI スキームのうちの http や https を使って Web ページの位置やアクセス方法を表す
+- ftp（File Transfer Protocol）や dav（WebDAV）、mailto（Electronic Mail Address）なども URI スキームに分類される
+
+### 8.5.4 HTML（HyperText Markup Language）
+
+### 8.5.5 HTTP（HyperText Transfer Protocol）
+
+- HTTP で定義される認証方式には、Basic 認証と Digest 認証がある
+- Base 認証では base64 でエンコードされるが、ユーザー ID とパスワードは平文でネットワークを流れるので安全ではない
+  - HTTPS の暗号化通信と組み合わせて利用することが推奨される
+- Digest 認証
