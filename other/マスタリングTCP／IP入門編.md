@@ -157,6 +157,16 @@
       - [スキーム](#スキーム)
     - [8.5.4 HTML（HyperText Markup Language）](#854-htmlhypertext-markup-language)
     - [8.5.5 HTTP（HyperText Transfer Protocol）](#855-httphypertext-transfer-protocol)
+    - [8.5.6 Web アプリケーション](#856-web-アプリケーション)
+    - [8.6 ネットワーク管理（SNMP）](#86-ネットワーク管理snmp)
+    - [8.6.1 SNMP（Simple Network Management Protocol）](#861-snmpsimple-network-management-protocol)
+    - [8.6.2 MIB（Management Information Base）](#862-mibmanagement-information-base)
+    - [8.7 その他のアプリケーションプロトコル](#87-その他のアプリケーションプロトコル)
+    - [8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）](#871-マルチメディア通信を実現する技術h323siprtp)
+    - [8.7.2 P2P（Peer To Peer）](#872-p2ppeer-to-peer)
+    - [8.7.3 LDAP（Lighitweight Directory Access Protocol）](#873-ldaplighitweight-directory-access-protocol)
+    - [8.7.4 NTP（Network Time Protocol）](#874-ntpnetwork-time-protocol)
+  - [第 9 章 セキュリティ](#第-9-章-セキュリティ)
 
 ## 第 1 章 ネットワーク基礎知識
 
@@ -1078,6 +1088,67 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
 ### 8.5.5 HTTP（HyperText Transfer Protocol）
 
 - HTTP で定義される認証方式には、Basic 認証と Digest 認証がある
-- Base 認証では base64 でエンコードされるが、ユーザー ID とパスワードは平文でネットワークを流れるので安全ではない
+- Basic 認証では base64 でエンコードされるが、ユーザー ID とパスワードは平文でネットワークを流れるので安全ではない
   - HTTPS の暗号化通信と組み合わせて利用することが推奨される
-- Digest 認証
+- Digest 認証では、MD5 でハッシュ化をする方式
+  - 盗聴されても解析が困難といわれていたが、近年は安全性に懸念がある
+- いずれにしても、HTTPS の暗号化通信を使用するのが一般的
+
+※現在はセッション+Cookie（Web アプリ）、トークン認証（API やマイクロサービス）などが主流（書籍外の内容）
+
+- 2015 年 5 月に公開された HTTP/2 は 1 つの接続での並列処理や、バイナリデータの使用による送受信のデータ量の削減、ヘッダ圧縮、サーバープッシュなどの導入により、ネットワークリソースの効率化を実現
+  - HTTP/1.1 は 1 リクエスト 1 レスポンスだったが、HTTP/2 は 1 本の TCP コネクション上で複数のリクエストを同時に流せる
+  - User-Agent や Cookie など毎回同じヘッダについてヘッダ圧縮（HPACK）をすることで、通信量を削減
+  - クライアントがまだ要求していないリソース（CSS や JS）をサーバが先回りして送れる（サーバープッシュ）
+- 2016 年 11 月に、TCP のスリーウェイハンドシェークの無い UDP を使う HTTP-over-QUIC が、 インターネットドラフトとして提出されたが、2018 年 12 月に HTTP/3 と名称を新たにした
+  - 接続確立が高速（UDP ベース）
+  - TLS を標準組み込み（QUIC の設計思想として、TLS1.3 の仕組みが統合済み）
+
+### 8.5.6 Web アプリケーション
+
+- JavaScript/ CGI / Cookie / WebSocket についての説明
+
+### 8.6 ネットワーク管理（SNMP）
+
+### 8.6.1 SNMP（Simple Network Management Protocol）
+
+- ネットワーク管理で必要な情報の取得を行うための UDP/IP 上で動作する標準的なプロトコル
+- ルーター、スイッチ、サーバーなどの様々なネットワーク機器から情報を収集し、それらを管理することを可能とする
+
+### 8.6.2 MIB（Management Information Base）
+
+- SNMP でやり取りされる情報が MIB
+- ツリー型の構造を持つデータベースで、標準 MIB と各メーカが作成した拡張 MIB が存在する
+- SNMP のプレゼンテーション層にあたり、この MIB に値を代入したり取り出すことで、情報の収集や変更、プロトコルの停止や起動などの処理を行える
+
+### 8.7 その他のアプリケーションプロトコル
+
+### 8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）
+
+- リアルタイムのマルチメディア通信としては、遅延の少なさや即時性の重要視されるので UDP が利用される
+  - H.323 や SIP、RIP などが存在
+- デジタル圧縮の規格を決める ISO/IEC のワーキンググループとして MPEG（Moving Picture Experts Group）が存在
+  - ここで策定された企画が MPEG で、DVD やデジタルテレビ放送に利用されている
+  - MP3 も MPEG の規格
+
+### 8.7.2 P2P（Peer To Peer）
+
+- Skype は P2P の機能を利用している
+
+### 8.7.3 LDAP（Lighitweight Directory Access Protocol）
+
+- ディレクトリサービスにアクセスするためのプロトコル
+- ディレクトリサービスとは、ネットワーク上に存在している様々な資源に関してデータベース的な情報提供を行うサービス
+  - LDAP サーバに認証情報を登録しておけば、複数のサーバに同一 ID でログイン可能
+- Active Directory などは LDAP を用いたサービス
+- LDIF（LDAP Interchange Format）と呼ばれるテキストファイルによって、ツリー構造で情報が管理されている（検索が容易）
+
+### 8.7.4 NTP（Network Time Protocol）
+
+- ネットワークに接続される機器の時刻を同期するためのアプリケーションプロトコル
+  - コンピュータやネットワーク機器のシステム時刻を正確に同期し、分散システムでの一貫性を確保したり、正確なタイムスタンプの記録をサポートする
+- NTP はクライアントサーバー型のアプリケーションで、時刻情報を要求するクライアントと提供するサーバーで構成され、UDP ポート 123 番を使う
+- Stratum と呼ばれる階層構造を持っていて、最上位の Stratum0 に位置する GPS 衛星や原子時計の正確な時刻情報を下位の NTP サーバーへ配信する仕組みとなっている
+  - 刻兄では、日本標準時を生成している NICT（情報通信研究機構）が Stratum1 の NTP サーバーを運用している（ntp.nict.jp）
+
+## 第 9 章 セキュリティ
