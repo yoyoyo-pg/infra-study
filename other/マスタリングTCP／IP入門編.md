@@ -153,20 +153,25 @@
       - [8.4.5 POP（Post Office Protocol）](#845-poppost-office-protocol)
       - [8.4.6 IMAP（Internet Message Access Protocol）](#846-imapinternet-message-access-protocol)
     - [8.5 WWW（World Wide Web）](#85-wwwworld-wide-web)
-    - [8.5.3 URI（Uniform Resource Identifier）](#853-uriuniform-resource-identifier)
+      - [8.5.3 URI（Uniform Resource Identifier）](#853-uriuniform-resource-identifier)
       - [スキーム](#スキーム)
-    - [8.5.4 HTML（HyperText Markup Language）](#854-htmlhypertext-markup-language)
-    - [8.5.5 HTTP（HyperText Transfer Protocol）](#855-httphypertext-transfer-protocol)
-    - [8.5.6 Web アプリケーション](#856-web-アプリケーション)
+      - [8.5.4 HTML（HyperText Markup Language）](#854-htmlhypertext-markup-language)
+      - [8.5.5 HTTP（HyperText Transfer Protocol）](#855-httphypertext-transfer-protocol)
+      - [8.5.6 Web アプリケーション](#856-web-アプリケーション)
     - [8.6 ネットワーク管理（SNMP）](#86-ネットワーク管理snmp)
-    - [8.6.1 SNMP（Simple Network Management Protocol）](#861-snmpsimple-network-management-protocol)
-    - [8.6.2 MIB（Management Information Base）](#862-mibmanagement-information-base)
+      - [8.6.1 SNMP（Simple Network Management Protocol）](#861-snmpsimple-network-management-protocol)
+      - [8.6.2 MIB（Management Information Base）](#862-mibmanagement-information-base)
     - [8.7 その他のアプリケーションプロトコル](#87-その他のアプリケーションプロトコル)
-    - [8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）](#871-マルチメディア通信を実現する技術h323siprtp)
-    - [8.7.2 P2P（Peer To Peer）](#872-p2ppeer-to-peer)
-    - [8.7.3 LDAP（Lighitweight Directory Access Protocol）](#873-ldaplighitweight-directory-access-protocol)
-    - [8.7.4 NTP（Network Time Protocol）](#874-ntpnetwork-time-protocol)
+      - [8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）](#871-マルチメディア通信を実現する技術h323siprtp)
+      - [8.7.2 P2P（Peer To Peer）](#872-p2ppeer-to-peer)
+      - [8.7.3 LDAP（Lighitweight Directory Access Protocol）](#873-ldaplighitweight-directory-access-protocol)
+      - [8.7.4 NTP（Network Time Protocol）](#874-ntpnetwork-time-protocol)
   - [第 9 章 セキュリティ](#第-9-章-セキュリティ)
+    - [9.1 セキュリティの重要性](#91-セキュリティの重要性)
+    - [9.2 セキュリティの構成要素](#92-セキュリティの構成要素)
+      - [9.2.1 ファイアウォール](#921-ファイアウォール)
+      - [9.2.2 IDS/IPS（侵入検知システム/侵入防止システム）](#922-idsips侵入検知システム侵入防止システム)
+      - [9.2.3 アンチウイルス/パーソナルファイアウォール](#923-アンチウイルスパーソナルファイアウォール)
 
 ## 第 1 章 ネットワーク基礎知識
 
@@ -1070,7 +1075,7 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
 - WWW では大きく「情報へのアクセス手段と位置の定義、情報の表現フォーマットの定義、情報の転送などの操作の定義」という 3 つの定義が行われている
   - それぞれ URI（Uniform Resource Identifier）、HTML（HyperText Markup Language）、HTTP（HyperText Transfer Protocol）と呼ばれる
 
-### 8.5.3 URI（Uniform Resource Identifier）
+#### 8.5.3 URI（Uniform Resource Identifier）
 
 - URI 自体は WWW 以外にも利用できる汎用性の高い識別子
   - ホームページのアドレスや電子メールのアドレス、電話番号など
@@ -1083,9 +1088,9 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
 - WWW では主に URI スキームのうちの http や https を使って Web ページの位置やアクセス方法を表す
 - ftp（File Transfer Protocol）や dav（WebDAV）、mailto（Electronic Mail Address）なども URI スキームに分類される
 
-### 8.5.4 HTML（HyperText Markup Language）
+#### 8.5.4 HTML（HyperText Markup Language）
 
-### 8.5.5 HTTP（HyperText Transfer Protocol）
+#### 8.5.5 HTTP（HyperText Transfer Protocol）
 
 - HTTP で定義される認証方式には、Basic 認証と Digest 認証がある
 - Basic 認証では base64 でエンコードされるが、ユーザー ID とパスワードは平文でネットワークを流れるので安全ではない
@@ -1104,18 +1109,18 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
   - 接続確立が高速（UDP ベース）
   - TLS を標準組み込み（QUIC の設計思想として、TLS1.3 の仕組みが統合済み）
 
-### 8.5.6 Web アプリケーション
+#### 8.5.6 Web アプリケーション
 
 - JavaScript/ CGI / Cookie / WebSocket についての説明
 
 ### 8.6 ネットワーク管理（SNMP）
 
-### 8.6.1 SNMP（Simple Network Management Protocol）
+#### 8.6.1 SNMP（Simple Network Management Protocol）
 
 - ネットワーク管理で必要な情報の取得を行うための UDP/IP 上で動作する標準的なプロトコル
 - ルーター、スイッチ、サーバーなどの様々なネットワーク機器から情報を収集し、それらを管理することを可能とする
 
-### 8.6.2 MIB（Management Information Base）
+#### 8.6.2 MIB（Management Information Base）
 
 - SNMP でやり取りされる情報が MIB
 - ツリー型の構造を持つデータベースで、標準 MIB と各メーカが作成した拡張 MIB が存在する
@@ -1123,7 +1128,7 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
 
 ### 8.7 その他のアプリケーションプロトコル
 
-### 8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）
+#### 8.7.1 マルチメディア通信を実現する技術（H.323、SIP、RTP）
 
 - リアルタイムのマルチメディア通信としては、遅延の少なさや即時性の重要視されるので UDP が利用される
   - H.323 や SIP、RIP などが存在
@@ -1131,11 +1136,11 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
   - ここで策定された企画が MPEG で、DVD やデジタルテレビ放送に利用されている
   - MP3 も MPEG の規格
 
-### 8.7.2 P2P（Peer To Peer）
+#### 8.7.2 P2P（Peer To Peer）
 
 - Skype は P2P の機能を利用している
 
-### 8.7.3 LDAP（Lighitweight Directory Access Protocol）
+#### 8.7.3 LDAP（Lighitweight Directory Access Protocol）
 
 - ディレクトリサービスにアクセスするためのプロトコル
 - ディレクトリサービスとは、ネットワーク上に存在している様々な資源に関してデータベース的な情報提供を行うサービス
@@ -1143,12 +1148,46 @@ traceroute（tracert）は Windows の場合は ICMP だが、linux の場合は
 - Active Directory などは LDAP を用いたサービス
 - LDIF（LDAP Interchange Format）と呼ばれるテキストファイルによって、ツリー構造で情報が管理されている（検索が容易）
 
-### 8.7.4 NTP（Network Time Protocol）
+#### 8.7.4 NTP（Network Time Protocol）
 
 - ネットワークに接続される機器の時刻を同期するためのアプリケーションプロトコル
   - コンピュータやネットワーク機器のシステム時刻を正確に同期し、分散システムでの一貫性を確保したり、正確なタイムスタンプの記録をサポートする
 - NTP はクライアントサーバー型のアプリケーションで、時刻情報を要求するクライアントと提供するサーバーで構成され、UDP ポート 123 番を使う
 - Stratum と呼ばれる階層構造を持っていて、最上位の Stratum0 に位置する GPS 衛星や原子時計の正確な時刻情報を下位の NTP サーバーへ配信する仕組みとなっている
-  - 刻兄では、日本標準時を生成している NICT（情報通信研究機構）が Stratum1 の NTP サーバーを運用している（ntp.nict.jp）
+  - 国内では、日本標準時を生成している NICT（情報通信研究機構）が Stratum1 の NTP サーバーを運用している（ntp.nict.jp）
 
 ## 第 9 章 セキュリティ
+
+### 9.1 セキュリティの重要性
+
+- 特定の組織内の機密情報を狙うサイバー攻撃のことを標的型攻撃という
+  - マルウェアが内部ネットワークに侵入後、数か月後に活動を開始して情報を盗み出すなど、持続的に攻撃を行う手法を APT 攻撃という
+    - Advanced Persistent Threat（先進的で執拗な脅威）
+  - 標的型攻撃には、サイバーキルチェーンと呼ばれるモデルがあり、攻撃を 7 つの段階に分離している
+    - それぞれの段階で対応する対策を取り、全体での連携をはかっていくことが重要
+- サイバーセキュリティ対策として、SOC（Security Operation Center）や CSIRT（Computer Security Incident Response Team）が増えている
+  - 前者はインシデントの検知に重点が置かれていて、後者はインシデント発生後の対応に重点が置かれている
+
+### 9.2 セキュリティの構成要素
+
+#### 9.2.1 ファイアウォール
+
+- ファイアウォールの基本的な考えとして「危険にさらすのは特定のホストやルータ―のみに限定する」というのがある
+  - インターネットから直接アクセスできるホストを制限し、そのホストに集中してセキュリティをかける
+
+#### 9.2.2 IDS/IPS（侵入検知システム/侵入防止システム）
+
+- ファイアウォールはポリシーと合致した通信であれば通過させるため、悪意のある通信か判断ができない
+- 悪意のある通信や内部に侵入して不正アクセスを行う通信を見つけ、セキュリティ管理者に通知をするのが IDS（侵入検知システム）
+  - ファイアウォールや DMZ などに設置されるものもあれば、ネットワーク内部に配置されるものもある
+- IPS（侵入防止システム）には、IDS の持つネットワークの監視、異常検知機能に加え、不正侵入を防止する機能がある
+  - 不正アクセスを検知した場合に、その不正アクセスを遮断することが可能
+- WAF はウェブアプリケーションの脆弱性を悪用する攻撃から守るためのセキュリティ対策なので、レイヤが異なる（アプリケーション層）
+
+#### 9.2.3 アンチウイルス/パーソナルファイアウォール
+
+- IDS/IPS、ファイアウォールに次ぐセキュリティ対策となる
+  - ユーザが利用するコンピュータやサーバで動作するソフトウェア
+- 潜在的な脅威や生産性の低下の一因になるような要素を取り除く機能も取り込まれていたりする
+- クライアントコンピュータのプロセス監視を通じて、潜伏しているマルウェアによる攻撃の兆候や攻撃の進行状況を管理者が把握する事ができる機能も出てきている
+- このようなマルウェア防御を備え、アンチウイルスを含む包括的なセキュリティ対策を総称して、エンドポイントセキュリティと呼ぶ
